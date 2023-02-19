@@ -1,0 +1,13 @@
+:root {
+    background-color: black;
+}
+
+html,
+body {
+    margin: 0;
+}
+
+body {
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+}
