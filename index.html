@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OVV</title>
+
+    <link rel="stylesheet" href="./css/hud.css">
+    <link rel="stylesheet" href="./css/main.css">
+
+    <script src="./src/index.js" type="module"></script>
+    <script>
+        // service worker
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', async () => {
+                try {
+                    let reg = await navigator.serviceWorker.register('./sw.js');
+                    console.log('Service Worker registered', reg);
+                } catch (err) {
+                    console.warn('Service worker registration failed: ', err);
+                };
+            });
+        }
+    </script>
+</head>
+
+<body>
+    <div class="infohud"><span class="peerpercent"></span></div>
+</body>
+
+</html>
