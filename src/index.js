@@ -8,12 +8,12 @@ const messageset = ovv.get("debugmessages")
 window.ovvinfo = {
     get peerpercent() {
         const connectedPeers = this.connectedPeers()
-        return (connectedPeers.length / peers.length).toFixed(2) * 100;
+        return ((connectedPeers.length || 1) / (peers.length || 1)).toFixed(2) * 100;
     },
-    connectedPeers(){
+    connectedPeers() {
         const opt_peers = gun.back("opt.peers");
         return Object.values(opt_peers).filter((peer) => {
-            return  peer
+            return peer
                 && peer.wire
                 && peer.wire.readyState === 1
                 && peer.wire.OPEN === 1
@@ -22,10 +22,10 @@ window.ovvinfo = {
     },
 
     // debug messages
-    listenDebug(){
+    listenDebug() {
         messageset.map(msg => console.log(msg));
     },
-    msgDebug(msg){
+    msgDebug(msg) {
         messageset.set(msg);
     }
 };
