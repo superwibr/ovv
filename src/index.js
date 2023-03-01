@@ -1,34 +1,14 @@
-import { gun, ovv, peers } from "./gun.js";
 import hudupdate from "./hud.js";
+import info from "./info.js";
+import mediator from "./mediator/mediator.js";
+import {ol, note} from "./ol.js";
 
-// gettening things we need
-const messageset = ovv.get("debugmessages")
-
-// setup the info object
-window.ovvinfo = {
-    get peerpercent() {
-        const connectedPeers = this.connectedPeers()
-        return ((connectedPeers.length || 1) / (peers.length || 1)).toFixed(2) * 100;
-    },
-    connectedPeers() {
-        const opt_peers = gun.back("opt.peers");
-        return Object.values(opt_peers).filter((peer) => {
-            return peer
-                && peer.wire
-                && peer.wire.readyState === 1
-                && peer.wire.OPEN === 1
-                && peer.wire.constructor.name === 'WebSocket';
-        });
-    },
-
-    // debug messages
-    listenDebug() {
-        messageset.map(msg => console.log(msg));
-    },
-    msgDebug(msg) {
-        messageset.set(msg);
-    }
+window.ovv = {
+    info, mediator, ol
 };
+ovv.ol.note = note;
 
 // start updating HUD
 hudupdate();
+
+export default ovv;

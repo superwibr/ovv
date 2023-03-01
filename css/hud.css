@@ -9,12 +9,37 @@
     padding: 0.4rem;
 }
 
-.peerpercent {}
-
 .peerpercent::before {
     content: "Peer relays: "
 }
 
 .peerpercent::after {
     content: "%"
+}
+
+
+.ol {
+    resize: both;
+    min-width: 10rem;
+    min-height: 10rem;
+    z-index: 10;
+    position: absolute;
+    background-color: #ffffff44;
+    overflow: hidden;
+}
+
+.ol > .olt {
+    height: 1rem;
+    background-color: #ffffff22;
+}
+
+/* Prevents inconsistent highlighting of element while being dragged
+   Copied from https://stackoverflow.com/questions/826782 */
+.noselect {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
